@@ -1,0 +1,40 @@
+name: PR Coverage Delta Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  compare-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download base coverage from main
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: main-coverage.yaml
+          workflow_conclusion: success
+          branch: main
+          name: base-coverage
+          path: coverage-base
+
+      - name: Run Jest on current branch
+        run: |
+          npx jest --coverage --coverageReporters=json-summary
+          mkdir -p coverage-new
+          mv coverage/coverage-summary.json coverage-new/coverage-summary.json
+
+      - name: Compare coverage delta
+        run: node ./scripts/check-coverage-delta.js
