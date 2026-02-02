@@ -1,15 +1,13 @@
 module.exports = {
   testEnvironment: "node",
 
-  // Coverage configuration
   collectCoverage: true,
   coverageDirectory: "coverage",
-  coverageReporters: ["json", "json-summary", "text-summary", "text", "html"],
+  collectCoverageFrom: ["01-basic-test-01/**/*.{js,ts}"],
+  coverageReporters: ["lcov", "text-summary"],
 
-  // ignore all Playwright tests
   testPathIgnorePatterns: ["/node_modules/", "/test-e2e/"],
 
-  // Reporters configuration
   reporters: [
     "default",
     [
@@ -20,4 +18,12 @@ module.exports = {
       },
     ],
   ],
+
+  // optional safety net
+  coverageThreshold: {
+    global: {
+      lines: 60,
+      statements: 60,
+    },
+  },
 };
