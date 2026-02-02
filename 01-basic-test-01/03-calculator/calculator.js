@@ -12,7 +12,7 @@ function calculator(num1, num2, operator) {
   }
 }
 
-/* function calculator(num1, num2, operator) {
+function calculator2(num1, num2, operator) {
   switch (operator) {
     case "+":
       return num1 + num2;
@@ -26,5 +26,4 @@ function calculator(num1, num2, operator) {
       return "Invalid operator";
   }
 }
- */
 module.exports = calculator;
