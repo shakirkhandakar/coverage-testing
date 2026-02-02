@@ -4,7 +4,7 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   collectCoverageFrom: ["01-basic-test-01/**/*.{js,ts}"],
-  coverageReporters: ["lcov", "text-summary"],
+  coverageReporters: ["lcov", "text-summary", "json-summary"],
 
   testPathIgnorePatterns: ["/node_modules/", "/test-e2e/"],
 
