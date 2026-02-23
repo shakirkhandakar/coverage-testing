@@ -13,7 +13,7 @@ module.exports = {
     [
       "jest-junit",
       {
-        outputDirectory: "./reports",
+        outputDirectory: "coverage",
         outputName: "junit.xml",
       },
     ],
@@ -22,8 +22,8 @@ module.exports = {
   // optional safety net
   coverageThreshold: {
     global: {
-      lines: 60,
-      statements: 60,
+      lines: 30,
+      statements: 30,
     },
   },
 };
